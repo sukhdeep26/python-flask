@@ -1,0 +1,20 @@
+name: Dev Branch Push Workflow
+
+# Trigger the workflow on push events to the 'dev' branch
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  print-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Print a message
+      - name: Print Message
+        run: echo "Yes, working"
