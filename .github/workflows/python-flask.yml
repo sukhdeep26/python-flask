@@ -4,7 +4,7 @@ name: Dev Branch Push Workflow
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   build:
@@ -32,3 +32,11 @@ jobs:
     - name: Run tests
       run: |
         pytest test_app.py
+
+    - name: Deploy to PythonAnywhere
+      env:
+        PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
+        PA_USERNAME: ${{ secrets.PA_USERNAME }}
+      run: |
+        sshpass -p ${{ secrets.PA_PASSWORD }} scp -r ./yourproject/* $PA_USERNAME@pythonanywhere.com:/home/$PA_USERNAME/flask-app/
+        sshpass -p ${{ secrets.PA_PASSWORD }} ssh $PA_USERNAME@pythonanywhere.com "cd /home/$PA_USERNAME/flask-app && pip install -r requirements.txt && touch /home/$PA_USERNAME/flask-app/wsgi.py"
