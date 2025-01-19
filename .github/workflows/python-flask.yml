@@ -38,5 +38,5 @@ jobs:
         PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
         PA_USERNAME: ${{ secrets.PA_USERNAME }}
       run: |
-        sshpass -p ${{ secrets.PA_PASSWORD }} scp -r ./yourproject/* $PA_USERNAME@pythonanywhere.com:/home/$PA_USERNAME/flask-app/
-        sshpass -p ${{ secrets.PA_PASSWORD }} ssh $PA_USERNAME@pythonanywhere.com "cd /home/$PA_USERNAME/flask-app && pip install -r requirements.txt && touch /home/$PA_USERNAME/flask-app/wsgi.py"
+        sshpass -p ${{ secrets.PA_PASSWORD }} scp -r ./python-flask/* $PA_USERNAME@pythonanywhere.com:/home/$PA_USERNAME/python-flask/
+        sshpass -p ${{ secrets.PA_PASSWORD }} ssh $PA_USERNAME@pythonanywhere.com "cd /home/$PA_USERNAME/python-flask && pip install -r requirements.txt && touch /home/$PA_USERNAME/python-flask/wsgi.py"
